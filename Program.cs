@@ -28,6 +28,7 @@ namespace PokemonTCG
                     string name = string.Empty; string numeration = string.Empty; string expation = string.Empty; string urlImage = string.Empty;
                     Pokemon poque = new Pokemon(name, numeration, expation, urlImage);
                     PokemonCard poq = new PokemonCard(qtepag);
+                    poq.ConvertImage();
                     poq.TackCard();
                  
                 }

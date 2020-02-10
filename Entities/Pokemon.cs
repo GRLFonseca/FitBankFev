@@ -33,7 +33,7 @@ namespace PokemonTCG.Entities
             string expation = string.Empty;
             string urlImage = string.Empty;
             Directory.CreateDirectory(@"C:\Pokemon\");
-            Pokemon poque = new Pokemon(name, numeration,expation,urlImage);
+            Pokemon poque = new Pokemon(name, numeration, expation, urlImage);
             JavaScriptSerializer js = new JavaScriptSerializer();
             string arquivojson = js.Serialize(poque);
             StreamWriter SW = new StreamWriter(@"C:\Pokemon\" + Path.GetFileName(Name) + ".json");
