@@ -25,9 +25,8 @@ namespace PokemonTCG.Entities
         }
         public object ConvertImage()
         {
-            var imagem = "https://assets.pokemon.com/assets/cms2/img/cards/web/XYA/XYA_EN_24a.png";
-            var urlImage = Convert.FromBase64String(imagem);
-            return UrlImage;
+            var imagem = Convert.FromBase64String(UrlImage);
+            return imagem;
         }
         public void TackCard()
         {
