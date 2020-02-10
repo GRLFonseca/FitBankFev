@@ -9,14 +9,15 @@ using System.Threading.Tasks;
 
 namespace PokemonTCG.Entities
 {
-    class PokemonCard 
+    class PokemonCard : Pokemon
     {
         public int Qtepag { get; set; }
-        public PokemonCard(int qtepag)
+
+    
+        public PokemonCard(string name, string numeration, string expation, string urlImage, int qtepag) : base(name, numeration,expation,urlImage)
         {
             Qtepag = qtepag;
         }
-
         public void TackCard()
         {
             var wc = new WebClient();
@@ -26,10 +27,6 @@ namespace PokemonTCG.Entities
 
             string id = string.Empty;
             string link = string.Empty;
-            string name = string.Empty;
-            string numeration = string.Empty;
-            string expation = string.Empty;
-            string url = string.Empty;
 
             foreach (HtmlNode x in htmldocument.GetElementbyId("cardResults").ChildNodes)
             {
