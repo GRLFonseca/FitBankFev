@@ -13,10 +13,14 @@ namespace PokemonTCG.Entities
     {
         public int Qtepag { get; set; }
 
-    
-        public PokemonCard(string name, string numeration, string expation, string urlImage, int qtepag) : base(name, numeration,expation,urlImage)
+        public PokemonCard(int qtepag)
         {
             Qtepag = qtepag;
+        }
+
+        public PokemonCard(string name, string numeration, string expation, string urlImage) : base(name, numeration,expation,urlImage)
+        {
+         
         }
         public void TackCard()
         {
