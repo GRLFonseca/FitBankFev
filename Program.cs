@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 using System.Web.Script.Serialization;
 using PokemonTCG.Entities;
 
@@ -19,14 +20,18 @@ namespace PokemonTCG
             Console.WriteLine("2 - Realize uma pesquisa sem preencher nenhum campo (Clicando em Search)");
             Console.WriteLine("3 - Informe abaixo a quantidade de páginas");
             int qtepag = int.Parse(Console.ReadLine());
-            for (int i = 0; i < qtepag; i++)
+            Parallel.For(0, qtepag, i =>
             {
-                string name = string.Empty; string numeration = string.Empty; string expation = string.Empty; string urlImage = string.Empty;
-                Pokemon poque = new Pokemon(name, numeration, expation, urlImage);
-                PokemonCard poq = new PokemonCard(qtepag);
-                poq.TackCard();
-                poque.JsonGeneration();
-            }
+                for (int a = 0; a < qtepag; a++)
+                {
+
+                    string name = string.Empty; string numeration = string.Empty; string expation = string.Empty; string urlImage = string.Empty;
+                    Pokemon poque = new Pokemon(name, numeration, expation, urlImage);
+                    PokemonCard poq = new PokemonCard(qtepag);
+                    poq.TackCard();
+                 
+                }
+            });
             Console.WriteLine("Gravar arquivo em um único json ou em json separado? U/S (U = Único Json / S = Json Separado)");
             char jsonarquivo = char.Parse(Console.ReadLine());
             if (jsonarquivo == 's' || jsonarquivo == 'S')
@@ -42,3 +47,4 @@ namespace PokemonTCG
         }
     }
 }
+
