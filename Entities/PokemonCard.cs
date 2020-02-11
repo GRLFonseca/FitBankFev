@@ -25,7 +25,17 @@ namespace PokemonTCG.Entities
         }
         public object ConvertImage()
         {
-            var imagem = Convert.FromBase64String(UrlImage);
+            object imagem = null;
+            var wc = new WebClient();
+            string pag = wc.DownloadString("https://www.pokemon.com/us/pokemon-tcg/pokemon-cards/bw-series/bwp/BW02/");
+             var htmldocument = new HtmlAgilityPack.HtmlDocument();
+            htmldocument.LoadHtml(pag);
+                if (htmldocument != null)
+                {
+                    imagem = Convert.FromBase64String(UrlImage);
+                }
+
+
             return imagem;
         }
         public void TackCard()
