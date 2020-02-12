@@ -26,19 +26,22 @@ namespace PokemonTCG.Entities
             Expation = expation;
             UrlImage = urlImage;
         }
-        public void JsonGeneration()
+        public void JsonGeneration(int pag)
         {
+
             string name = string.Empty;
             string numeration = string.Empty;
             string expation = string.Empty;
             string urlImage = string.Empty;
-            Directory.CreateDirectory(@"C:\Pokemon\");
-            Pokemon poque = new Pokemon(name, numeration, expation, urlImage);
-            JavaScriptSerializer js = new JavaScriptSerializer();
-            string arquivojson = js.Serialize(poque);
-            StreamWriter SW = new StreamWriter(@"C:\Pokemon\" + Path.GetFileName(Name) + ".json");
-            SW.WriteLine(arquivojson);
-            SW.Close();
+            for (int id = 0; id < pag; id++) {
+                Directory.CreateDirectory(@"C:\Pokemon\");
+                Pokemon poque = new Pokemon(name, numeration, expation, urlImage);
+                JavaScriptSerializer js = new JavaScriptSerializer();
+                string arquivojson = js.Serialize(poque);
+                StreamWriter SW = new StreamWriter(@"C:\Pokemon\" + poque.Name + ".json");
+                SW.WriteLine(arquivojson);
+                SW.Close();
+            }
         }
         public void JsonGenerationArchiveUnique()
         {
@@ -50,7 +53,7 @@ namespace PokemonTCG.Entities
             Pokemon poque = new Pokemon(name, numeration, expation, urlImage);
             JavaScriptSerializer js = new JavaScriptSerializer();
             string arquivojson = js.Serialize(poque);
-            StreamWriter SW = new StreamWriter(@"C:\Pokemon\PokemonCard.json");
+            StreamWriter SW = new StreamWriter(@"C:\Pokemon\Pokemon.json");
             SW.WriteLine(arquivojson);
             SW.Close();
         }
