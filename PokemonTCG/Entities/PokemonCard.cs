@@ -13,21 +13,31 @@ namespace PokemonTCG.Entities
     class PokemonCard : Pokemon
     {
         public int Qtepag { get; set; }
+        public string Ash { get; set; }
+        public string Atribut { get; set; }
+        public string ImagePoke { get; set; }
+        public string Linktxt { get; set; }
+
+
+        public PokemonCard()
+        {
+        }
 
         public PokemonCard(int qtepag)
         {
             Qtepag = qtepag;
         }
-
-        public PokemonCard(string name, string numeration, string expation, string urlImage) : base(name, numeration, expation, urlImage)
-        {
-
-        }
-        public dynamic ConvertImage(dynamic linktxt)
+        public dynamic ConvertImageEncode(dynamic linktxt)
         {
             var web = new WebClient();
-            return Convert.FromBase64String(linktxt);
+            var Text = System.Text.Encoding.UTF8.GetBytes(linktxt);
+            return System.Convert.ToBase64String(Text);
 
+        }
+        public static string ConvertImageDecode(string linktxt)
+        {
+            var Text = System.Convert.FromBase64String(linktxt);
+            return System.Text.Encoding.UTF8.GetString(Text);
         }
         public void TackCard(int numeracao)
         {
@@ -50,7 +60,7 @@ namespace PokemonTCG.Entities
                         var linktxt = imagepoke.Attributes["src"].Value;
                         if (!image.ContainsKey(atribut))
                         {
-                            image[atribut] = ConvertImage(linktxt);
+                            image[atribut] = ConvertImageEncode(linktxt);
                         }
 
 

@@ -55,6 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Json.cs" />
     <Compile Include="Entities\Pokemon.cs" />
     <Compile Include="Entities\PokemonCard.cs" />
     <Compile Include="Program.cs" />
